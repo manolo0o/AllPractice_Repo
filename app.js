@@ -1,23 +1,39 @@
-// Seleccionar los elementos del DOM
 
-const boton = document.querySelector('button')
-const color = document.getElementById('color');
+//POO FIRTS CLASS
+import { character } from "./character.js";
+import { warrior } from "./warrior.js";
+import { wizard } from "./wizard.js";
 
-function generarColorHexAleatorio(){
-  let digitos = '0123456789ABDCDEF';
-  let colorHex = '#';
-  
-  for (let i = 0; i < 6; i++){
-    let indiceAleatorio = Math.floor(Math.random()*16);
-    colorHex += digitos [indiceAleatorio]
-  }
-  return colorHex;
+let defaultCharacter = new character();
+let warriorCharacter = new warrior("Manuel");
+let wizardCharacter = new wizard("Maria");
+console.log(defaultCharacter)
+console.log(warriorCharacter)
+console.log(wizardCharacter)
+
+
+
+
+
+
+
+
+
+
+
+//___________________________________________________________
+/* class Animal{
+  constructor(nombre, genero)
+  //atributos
+
+
+//metodos
+this.sonar = function(){
+  console.log("hago sonidos pq estoy vivo.");
 }
 
-boton.addEventListener('click',function(){
-  let colorAleatorio = generarColorHexAleatorio();
-  // Actualizar el texto
-  color.textContent = colorAleatorio
-  // Actualizar el color fondo
-  document.body.style.backgroundColor = colorAleatorio;
-});
+this.saludar = function () {
+  console.log(`Hola me llamo ${this.nombre}`);
+}
+
+} */
