@@ -16,5 +16,15 @@ export class creature{
     set maxHp(max_Hp){
         this.#maxHp += max_Hp;
     }
+    set setArmor(armorPoints){
+        this.#armor += armorPoints;
+    }
+    get getArmor(){
+        return this.#armor;
+    }
+    attack(instrument = 0){
+        if(instrument) this.#dmg += instrument;
+        return instrument;
+    }
 
 }

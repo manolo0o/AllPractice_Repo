@@ -16,7 +16,7 @@ export class character{
         this.#armor += armorPoints;
     }
     get getArmor(){
-        return this.#armor  ;
+        return this.#armor;
     }
     attack(instrument = 0){
         if(instrument) this.#dmg += instrument;

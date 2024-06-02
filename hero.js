@@ -5,7 +5,7 @@ export class hero extends creature{
     constructor(nam){
     super();
     this.setName = nam;
-    this.setHp = 20;
+    this.setHp = 10;
     this.armor();
     }
     armor(){
