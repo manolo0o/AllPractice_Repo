@@ -2,6 +2,7 @@ export class character{
     #hp = 20;
     #armor = 50;
     #dmg = 5;
+    
     constructor(){
     this.setName = undefined;
     }
