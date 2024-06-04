@@ -1,4 +1,4 @@
-import { creature } from "./creature.js";
+import { creature } from "../Default/creature.js";
 
 export class monster extends creature{
     #shield = true;

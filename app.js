@@ -6,9 +6,9 @@
 //HUMANS
 //_________________________________________________
 
-import { character } from "./character.js";
-import { warrior } from "./warrior.js";
-import { wizard } from "./wizard.js";
+import { character } from "./Default/character.js"; //DEFAULT
+import { warrior } from "./Humans/warrior.js";
+import { wizard } from "./Humans/wizard.js";
 
 let defaultCharacter = new character();
 let warriorCharacter = new warrior("Manuel");
@@ -21,9 +21,9 @@ console.log(wizardCharacter)
 //Creatures
 //_________________________________________________
 
-import { creature } from "./creature.js";
-import { hero } from "./hero.js";
-import { monster } from "./monster.js";
+import { hero } from "./Creatures/hero.js";
+import { monster } from "./Creatures/monster.js";
+import { creature } from "./Default/creature.js";
 
 let defaultcreatureCharacter = new creature();
 let heroCharacter = new hero("Jarvan");

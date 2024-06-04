@@ -1,5 +1,6 @@
-import { character } from "./character.js";
-export class warrior extends character{
+import { creature } from "../Default/creature.js";
+
+export class hero extends creature{
     #shield = true;
     constructor(nam){
     super();

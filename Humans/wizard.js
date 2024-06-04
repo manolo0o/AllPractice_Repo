@@ -1,4 +1,4 @@
-import { character } from "./character.js";
+import { character } from "../Default/character.js";
 export class wizard extends character{
     constructor(nam){
     super();
