@@ -207,44 +207,86 @@ SELECT DISTINCT(jobTitle), COUNT(employeeNumber)
 
 4. **Encontrar la cantidad total de productos pedidos por cada cliente:**
 
-   ```slq
-      
+   ```sql
+      SELECT orders.customerNumber, 
+         COUNT(orderdetails.quantityOrdered) AS total_products 
+      FROM orders 
+      JOIN orderdetails 
+      ON orders.orderNumber = orderdetails.orderNumber 
+      GROUP BY orders.customerNumber;
    ```
 
 5. **Calcular el total de ventas (cantidad ordenada por precio cada uno) por cada cliente:**
 
-   ```
-   
+   ```sql
+   SELECT 
+   customers.customerNumber, 
+   MIN(orderdetails.quantityOrdered) AS quantity_ordered,
+   SUM(payments.amount) AS total_amount
+   FROM customers
+   JOIN orders 
+   ON customers.customerNumber = orders.customerNumber
+   JOIN orderdetails 
+   ON orders.orderNumber = orderdetails.orderNumber
+   JOIN payments 
+   ON customers.customerNumber = payments.customerNumber
+   GROUP BY customers.customerNumber;
    ```
 
 6. **Obtener el promedio de la cantidad de productos en stock por línea de productos:**
 
-   ```
-   
+   ```sql
+   SELECT 
+   AVG(products.quantityInStock) AS quiantity_avg, productlines.productLine
+   FROM products
+   JOIN productlines 
+   ON products.productLine = productlines.productLine
+   GROUP BY productlines.productLine;
    ```
 
 7. **Calcular el total de pagos recibidos por cada país:**
 
-   ```
-   
+   ```sql
+   SELECT 
+   customers.country AS country, 
+   COUNT(payments.amount) AS country_payments
+   FROM customers
+   JOIN payments
+   ON customers.customerNumber = payments.customerNumber 
+   GROUP BY customers.country;
    ```
 
 8. **Encontrar el promedio de ventas (cantidad ordenada por precio cada uno) por cada empleado:**
 
-   ```
-   
+   ```sql
+   SELECT customers.salesRepEmployeeNumber, 
+      AVG(payments.amount) AS sell_avg
+      FROM customers
+      JOIN payments
+      ON customers.customerNumber = payments.customerNumber
+      GROUP BY customers.salesRepEmployeeNumber
    ```
 
 9. **Calcular el total de órdenes gestionadas por cada empleado:**
 
-   ```
-   
+   ```sql
+      SELECT customers.salesRepEmployeeNumber, 
+      COUNT(orders.orderNumber) AS suggestOrdersByemployee 
+      FROM customers
+      JOIN orders 
+      ON customers.customerNumber = orders.customerNumber
+      GROUP BY customers.salesRepEmployeeNumber;
    ```
 
 10. **Obtener la cantidad total de productos vendidos por cada línea de productos:**
 
-    ```
-    
+    ```sql
+      SELECT products.productLine, 
+      SUM(orderdetails.quantityOrdered) AS total
+      FROM products 
+      JOIN orderdetails 
+      ON products.productCode = orderdetails.productCode
+      GROUP BY products.productLine;
     ```
 
 11. **Encontrar el promedio de la cantidad de productos ordenados por cada cliente:**
