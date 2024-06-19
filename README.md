@@ -284,63 +284,118 @@ SELECT DISTINCT(jobTitle), COUNT(employeeNumber)
       SELECT products.productLine, 
       SUM(orderdetails.quantityOrdered) AS total
       FROM products 
-      JOIN orderdetails 
+      INNER JOIN orderdetails 
       ON products.productCode = orderdetails.productCode
       GROUP BY products.productLine;
     ```
 
 11. **Encontrar el promedio de la cantidad de productos ordenados por cada cliente:**
 
-    ```
-    
+    ```sql  
+      SELECT customers.customerNumber, 
+      AVG(orderdetails.quantityOrdered) AS avgOrdersByClients
+      FROM customers 
+      INNER JOIN orders 
+      ON customers.customerNumber = orders.customerNumber
+      INNER JOIN orderdetails
+      ON orders.orderNumber = orderdetails.orderNumber
+      GROUP BY customers.customerNumber;
     ```
 
 12. **Calcular el total de ventas realizadas en cada país:**
 
-    ```
-    
+    ```sql
+      SELECT 
+      customers.country AS country, 
+      COUNT(orders.orderNumber) AS countryOrders
+      FROM customers
+      INNER JOIN orders
+      ON customers.customerNumber = orders.customerNumber 
+      GROUP BY customers.country;
     ```
 
 13. **Obtener el promedio del precio de compra de los productos por línea de productos:**
 
-    ```
-    
+    ```sql
+      SELECT products.productLine, 
+      AVG(products.buyPrice) AS buyPrice
+      FROM products
+      GROUP BY products.productLine; 
     ```
 
 14. **Encontrar la cantidad total de productos vendidos por cada vendedor:**
 
-    ```
-    
+    ```sql
+      SELECT customers.salesRepEmployeeNumber AS EmployeeCode,
+      COUNT(orders.orderNumber) AS totalSales
+      FROM customers
+      INNER JOIN orders
+      ON customers.customerNumber = orders.customerNumber
+      GROUP BY customers.salesRepEmployeeNumber;  
     ```
 
 15. **Calcular el total de pagos recibidos por cada vendedor:**
 
-    ```
-    
+    ```sql
+      SELECT customers.salesRepEmployeeNumber AS EmployeeCode,
+      COUNT(payments.checkNumber) AS TotalPayments
+      FROM customers
+      INNER JOIN payments
+      ON customers.customerNumber = payments.customerNumber
+      GROUP BY customers.salesRepEmployeeNumber;
     ```
 
 16. **Obtener el promedio del límite de crédito de los clientes atendidos por cada vendedor:**
 
-    ```
-    
+    ```sql
+      SELECT 
+      customers.salesRepEmployeeNumber AS employeeID, 
+      MIN(customers.customerNumber) AS clientsID,
+      AVG(customers.creditLimit) AS clientCreditLimit
+      FROM customers
+      GROUP BY customers.salesRepEmployeeNumber;  
     ```
 
 17. **Encontrar el total de ventas realizadas por cada oficina:**
 
-    ```
-    
+    ```sql
+      SELECT employees.officeCode AS officeCode, 
+      COUNT(payments.paymentDate) AS totalSales
+      FROM employees
+      INNER JOIN customers 
+      ON employees.employeeNumber = customers.salesRepEmployeeNumber
+      INNER JOIN payments
+      ON customers.customerNumber = payments.customerNumber
+      GROUP BY employees.officeCode;
     ```
 
 18. **Calcular la cantidad media de productos pedidos por cada cliente:**
 
-    ```
-    
+    ```sql
+      SELECT customers.customerNumber AS clientID,
+      AVG(orderdetails.quantityOrdered) AS avgBuyItProducts
+      FROM customers
+      INNER JOIN orders
+      ON customers.customerNumber = orders.customerNumber
+      INNER JOIN orderdetails
+      ON orders.orderNumber = orderdetails.orderNumber
+      GROUP BY customers.customerNumber;
     ```
 
 19. **Obtener el total de pagos realizados en cada año:**
 
-    ```
-    
+    ```sql
+      SELECT  
+      YEAR(payments.paymentDate) AS yearDate,
+      COUNT(*) AS totalPayments
+      FROM payments
+      GROUP BY payments.paymentDate;  
+      
+      SELECT 
+      YEAR(payments.paymentDate) AS 'year', 
+      COUNT('year') AS 'totalPayments'
+      FROM payments
+      GROUP BY 'year'
     ```
 
 20. **Encontrar el promedio del precio de venta (priceEach) de los productos por línea de productos:**
