@@ -385,21 +385,16 @@ SELECT DISTINCT(jobTitle), COUNT(employeeNumber)
 19. **Obtener el total de pagos realizados en cada año:**
 
     ```sql
-      SELECT  
-      YEAR(payments.paymentDate) AS yearDate,
-      COUNT(*) AS totalPayments
+      SELECT YEAR(paymentDate) AS anio, SUM(amount) AS total_pagos
       FROM payments
-      GROUP BY payments.paymentDate;  
-      
-      SELECT 
-      YEAR(payments.paymentDate) AS 'year', 
-      COUNT('year') AS 'totalPayments'
-      FROM payments
-      GROUP BY 'year'
+      GROUP BY YEAR(paymentDate);
     ```
 
 20. **Encontrar el promedio del precio de venta (priceEach) de los productos por línea de productos:**
 
-    ```
-    
+    ```sql
+         SELECT p.productLine, AVG(od.priceEach) AS promedio_precio_venta
+         FROM products p
+         JOIN orderdetails od ON p.productCode = od.productCode
+         GROUP BY p.productLine;
     ```
