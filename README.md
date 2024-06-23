@@ -1,4 +1,5 @@
 ### Consultas de una sola tabla
+PARTE 1/2
 
 1. **Recuperar todas las líneas de productos con sus descripciones:**
 
